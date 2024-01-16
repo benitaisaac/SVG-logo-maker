@@ -1,7 +1,18 @@
 const inquirer = require('inquirer'); 
 const fs = require('fs');
 
-//Create all questions that user will have to answer
+const Shape = require('./lib/shapes.js');
+
+const myShape = new Shape('ABC', 'white', 'red', 'square');
+console.log(myShape);
+
+fs.writeFile('logo.svg', myShape.render(), function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
+
+
+// Create all questions that user will have to answer
 const questions = [
     {
         type: 'input',
@@ -32,9 +43,43 @@ const questions = [
 
 //TO DO: have this function create an SVC file and populate answers in there 
 inquirer
-.prompt(questions).then((answers) =>{
-    console.log(JSON.stringify(answers, null, '  '));
+.prompt(questions)
+
+.then((answers) => {
+//     //console.log(JSON.stringify(answers, null, '  '));
+//     console.log(answers.shape_color);
+//     console.log(answers.text);
+//     console.log(answers.text_color);
+//     console.log(answers.shape);
+    const mm = new Shape(answers.text, answers.text_color, answers.shape_color, answers.shape);
+    console.log(mm.render());
+    fs.writeFile('logo.svg', mm.render(), function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+      });
+    // let mm = new Shape('ABC', 'white', 'red', 'square');
+
+    //console.log(mm);
+
+    // const myShape = new Shape(answers.text, answers.textColor, answers.shapeColour, answers.shape);
+    // console.log(myShape.render());
+    // fs.writeFile('logo.svg', myShape.render(), function (err) {
+    //         if (err) throw err;
+    //         console.log('Saved!');
+    //       });
+    // fs.writeFile('input.JSON', JSON.stringify(answers, null, '  '));
+    //return JSON.stringify(answers, null, '  ');
+
+    
 } );
+
+// fs.writeFile('logo.svg', myShape.render(), function (err) {
+    //     if (err) throw err;
+    //     console.log('Saved!');
+    //   });
+
+
+
 
 // .then((answers) => {
 //     fs.writeFile('README.md', generateREADME(answers), (err) => {
