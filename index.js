@@ -30,10 +30,18 @@ const questions = [
     }
 ]
 
+//TO DO: have this function create an SVC file and populate answers in there 
 inquirer
 .prompt(questions).then((answers) =>{
     console.log(JSON.stringify(answers, null, '  '));
 } );
+
+// .then((answers) => {
+//     fs.writeFile('README.md', generateREADME(answers), (err) => {
+//         if (err) throw err;
+//         console.log('The README was created!');
+//     })
+//   });
 
 
 //Acceptance Criteria: 
