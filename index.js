@@ -2,14 +2,9 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 const Shape = require('./lib/shapes.js');
-
-const myShape = new Shape('ABC', 'white', 'red', 'square');
-console.log(myShape);
-
-fs.writeFile('logo.svg', myShape.render(), function (err) {
-    if (err) throw err;
-    console.log('Saved!');
-  });
+const Circle = require('./lib/circle.js');
+const Triangle = require('./lib/triangle.js');
+const Square = require('./lib/square.js');
 
 
 // Create all questions that user will have to answer
@@ -46,17 +41,29 @@ inquirer
 .prompt(questions)
 
 .then((answers) => {
-//     //console.log(JSON.stringify(answers, null, '  '));
-//     console.log(answers.shape_color);
-//     console.log(answers.text);
-//     console.log(answers.text_color);
-//     console.log(answers.shape);
-    const mm = new Shape(answers.text, answers.text_color, answers.shape_color, answers.shape);
-    console.log(mm.render());
-    fs.writeFile('logo.svg', mm.render(), function (err) {
+
+switch(answers.shape){
+    case 'circle':
+        mm = new Circle(answers.text, answers.text_color, answers.shape_color, answers.shape);
+        break
+
+    case 'square':
+        mm = new Square(answers.text, answers.text_color, answers.shape_color, answers.shape);
+        break
+
+    case 'triangle':
+        mm = new Triangle(answers.text, answers.text_color, answers.shape_color, answers.shape);
+        break
+}
+
+    //const mm = new Shape(answers.text, answers.text_color, answers.shape_color, answers.shape);
+    fs.writeFile('logo.svg', mm.renderSvg(), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
+
+
+
     // let mm = new Shape('ABC', 'white', 'red', 'square');
 
     //console.log(mm);
