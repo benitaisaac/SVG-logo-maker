@@ -44,15 +44,15 @@ inquirer
 
 switch(answers.shape){
     case 'circle':
-        mm = new Circle(answers.text, answers.text_color, answers.shape_color, answers.shape);
+        mm = new Circle(answers.text, answers.text_color, answers.shape_color);
         break
 
     case 'square':
-        mm = new Square(answers.text, answers.text_color, answers.shape_color, answers.shape);
+        mm = new Square(answers.text, answers.text_color, answers.shape_color);
         break
 
     case 'triangle':
-        mm = new Triangle(answers.text, answers.text_color, answers.shape_color, answers.shape);
+        mm = new Triangle(answers.text, answers.text_color, answers.shape_color);
         break
 }
 
