@@ -58,3 +58,20 @@ expect(circle.renderSvg()).toEqual(result);
     });
 });
 
+describe('Shape', () => {
+    test('it should correctly render the svg string for square', () => {
+        const square = new Square('acb', 'yellow', 'orange');
+        const result = `<svg version="1.1"
+        width="300" height="200"
+        xmlns="http://www.w3.org/2000/svg">
+
+ <rect x="50" y="0" width="200" height="200" fill="orange" />
+
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="yellow">acb</text>
+
+</svg>`;
+
+expect(square.renderSvg()).toBe(result);
+    })
+})
+
