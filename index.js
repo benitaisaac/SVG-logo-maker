@@ -47,21 +47,22 @@ inquirer
 switch(answers.shape){
     // use the circle class that extends shape and input user data in template literal
     case 'circle':
-        mm = new Circle(answers.text, answers.text_color, answers.shape_color);
+        //create new circle based off of user input 
+        logo = new Circle(answers.text, answers.text_color, answers.shape_color);
         break
     // use the square class that extends shape and input user data in template literal
     case 'square':
-        mm = new Square(answers.text, answers.text_color, answers.shape_color);
+        logo = new Square(answers.text, answers.text_color, answers.shape_color);
         break
 
     // use the triangle class that extends shape and input user data in template literal
     case 'triangle':
-        mm = new Triangle(answers.text, answers.text_color, answers.shape_color);
+        logo = new Triangle(answers.text, answers.text_color, answers.shape_color);
         break
 }
 
-   // use fs to create logo file based off of user input 
-    fs.writeFile('logo.svg', mm.renderSvg(), function (err) {
+   // use fs to create logo file based off of user input by running the renderSvg method on the newly created circle, square or triangle
+    fs.writeFile('logo.svg', logo.renderSvg(), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
