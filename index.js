@@ -1,13 +1,15 @@
+// importing required modules and packages 
 const inquirer = require('inquirer'); 
 const fs = require('fs');
 
+//importing required classes 
 const Shape = require('./lib/shapes.js');
 const Circle = require('./lib/circle.js');
 const Triangle = require('./lib/triangle.js');
 const Square = require('./lib/square.js');
 
 
-// Create all questions that user will have to answer
+// Create questions array that user will have to answer
 const questions = [
     {
         type: 'input',
@@ -36,30 +38,31 @@ const questions = [
     }
 ]
  
+// create inquirer prompt with a switch statement for each shape
 inquirer
 .prompt(questions)
 
 .then((answers) => {
 
 switch(answers.shape){
+    // use the circle class that extends shape and input user data in template literal
     case 'circle':
         mm = new Circle(answers.text, answers.text_color, answers.shape_color);
         break
-
+    // use the square class that extends shape and input user data in template literal
     case 'square':
         mm = new Square(answers.text, answers.text_color, answers.shape_color);
         break
 
+    // use the triangle class that extends shape and input user data in template literal
     case 'triangle':
         mm = new Triangle(answers.text, answers.text_color, answers.shape_color);
         break
 }
 
-    //const mm = new Shape(answers.text, answers.text_color, answers.shape_color, answers.shape);
+   // use fs to create logo file based off of user input 
     fs.writeFile('logo.svg', mm.renderSvg(), function (err) {
         if (err) throw err;
         console.log('Saved!');
       });
-
-    
 } );
